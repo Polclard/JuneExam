@@ -26,3 +26,4 @@ Steps when starting new application on Exam
 9. Set IEntityNameRepository and EntityNameRepository, add and implement CRUD operation both in the interface and the repository
 10. Register your Repositories and Services in Program.cs
 11. Check if Some virtual or references to another model in some model need to be set to be instantiated inside the class to not be null
+12. To be continued...
