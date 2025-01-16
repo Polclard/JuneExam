@@ -1,0 +1,114 @@
+﻿@model Domain.Domain_Models.Employee
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    table, td, tr, th{
+        style="border: 1px solid black"
+    }
+</style>
+
+<h1>Details</h1>
+
+<a class="btn btn-success" asp-action="AddAppointment" asp-route-id="@Model.Id">Add appointment</a>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Company)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Company.Id)
+        </dd>
+    </dl>
+</div>
+<hr>
+<div>
+
+
+    <table>
+        <thead>
+            <th style="border: 1px solid black">
+                #
+            </th>
+            
+            <th style="border: 1px solid black">
+                Description
+            </th>
+            
+            <th style="border: 1px solid black">
+                Polyclinic Name
+            </th>
+            
+            <th  style="border: 1px solid black">
+                Polyclinic Address
+            </th>
+        </thead>
+
+        <tbody >
+        @for (int i = 0; i < Model.HealthExaminations.Count(); i++)
+        {
+            var item = Model.HealthExaminations.ToList()[i];
+            <tr style="border: 1px solid black">
+                <td style="border: 1px solid black">@(i + 1)</td>
+                <td style="border: 1px solid black">
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+
+                <td style="border: 1px solid black">
+                    @Html.DisplayFor(modelItem => item.Polyclinic.PolyclinicName)
+                </td>
+                <td style="border: 1px solid black">
+                    @Html.DisplayFor(modelItem => item.Polyclinic.PolyclinicAddress)
+                </td>
+            </tr>
+        }
+        </tbody>
+
+        <tfoot>
+             <th  style="border: 1px solid black">
+                #
+            </th>
+            
+            <th  style="border: 1px solid black">
+                Description
+            </th>
+            
+            <th  style="border: 1px solid black">
+                Polyclinic Name
+            </th>
+            
+            <th  style="border: 1px solid black">
+                Polyclinic Address
+            </th>
+        </tfoot>
+    </table>
+
+ 
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
